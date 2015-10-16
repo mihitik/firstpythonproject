@@ -1,0 +1,58 @@
+
+# Always print the  list to review prior to making any adjustments "Your current ToDo list is:"
+# The list checks for duplicates 
+# For delete, make sure the item is there by printing out the To Do list first. Prompt the user if it is not there. 
+
+
+todo = []
+print
+print  '\nWelcome to your To Do list! Your current ToDo list has {0} tasks.\n' .format(len(todo))
+print 
+
+inquiry = ""
+count = 0 
+
+while inquiry != "exit": 
+	inquiry = raw_input("Enter what you would like to do: Add, Del, Edit, Exit. ")	
+	inquiry = inquiry.lower()
+	if inquiry == "add" or inquiry == "del" or inquiry == "exit" or inquiry == "edit":
+		print 
+
+		if inquiry == "add":
+			add_to_list = raw_input("What do you want to add to the list? ")
+			if add_to_list not in todo:
+					todo.append(add_to_list) 
+					count += 1
+					print "Your item #%i: %s was added to the list" %(count, add_to_list)
+					print "You have " + str(len(todo)) + " task(s) in the list."
+					print todo
+			else: 
+				print "This task is already on the list."
+				#The user is asked to choose the option. 
+		elif inquiry == "del":
+			print "This is your list, select which task to delete:"
+			print todo
+			del_from_list = raw_input("Choose what do you want to delete from the list? ") 
+			if del_from_list in todo:
+					todo.remove(del_from_list)
+					count -= 1 
+					print "Your item %s was deleted from the list" %(del_from_list)
+					print "You have " + str(len(todo)) + " in the list."
+					print todo
+			else: 
+		
+				print "Select an existing item to delete from the list."
+	
+		elif inquiry == "edit":
+			print "This is your current to do list:"
+			print todo
+			edit_from_list = raw_input("Choose what do you want to edit from the list? ") 
+			new_value = raw_input("Enter the replacement: ")
+			for item in todo:
+				if item == edit_from_list:
+					i = todo.index(edit_from_list)
+					todo[i] = new_value
+			print todo
+	
+	else: 
+		print "Your entry is not recognized. Choose an option from Add, Del, Edit, Exit. "			
